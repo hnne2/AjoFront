@@ -1,0 +1,59 @@
+@use '../abstracts/mixins' as *;
+
+@mixin font {
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.typo-h1 {
+  @include font();
+  font-size: val(36, 72);
+}
+.typo-h2 {
+  @include font();
+  font-size: val(28, 64);
+}
+.typo-h3 {
+  @include font();
+  font-size: val(24, 48);
+}
+.typo-h4 {
+  @include font();
+  font-size: val(24, 32);
+}
+.typo-h5 {
+  @include font();
+  font-size: val(20, 24);
+}
+.typo-h6 {
+  @include font();
+  font-size: 20px;
+}
+.typo-p1 {
+  font-family:
+    'PTSans-Regular',
+    -apple-system,
+    BlinkMacSystemFont,
+    Arial,
+    sans-serif;
+  letter-spacing: normal;
+  text-transform: none;
+  font-weight: 400;
+  font-size: val(14, 16);
+  line-height: 140%;
+}
+.typo-p2 {
+  font-family:
+    'PTSans-Regular',
+    -apple-system,
+    BlinkMacSystemFont,
+    Arial,
+    sans-serif;
+  letter-spacing: normal;
+  text-transform: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+}

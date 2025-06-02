@@ -1,0 +1,84 @@
+@use './variables' as *;
+
+html {
+  height: 100%;
+  line-height: normal;
+}
+
+body {
+  height: 100%;
+  font-family:
+    'DecimaMonoPro',
+    -apple-system,
+    BlinkMacSystemFont,
+    Arial,
+    sans-serif;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-weight: normal;
+  background-color: #fff;
+  color: $color-black;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  white-space: nowrap;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 16px;
+  @media (min-width: $tablet) {
+    padding: 0 48px;
+  }
+}
+
+.bg-pink {
+  background-color: $color-purple-light;
+  color: #fff;
+}
+
+html.lock {
+  overflow: hidden;
+}
+
+.custom-scrollbar {
+  scrollbar-color: #ccc transparent;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 100px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    border: 5px solid transparent;
+    background-clip: content-box;
+    background-color: #ccc;
+  }
+}

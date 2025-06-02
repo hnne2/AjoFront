@@ -1,0 +1,52 @@
+@use './../general/variables.scss' as *;
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  row-gap: 4px;
+  color: $color-black;
+  margin-top: 8px;
+  @media (min-width: $tablet) {
+    margin-top: 40px;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    &:not(:last-child) {
+      &::after {
+        content: '/';
+        text-align: center;
+        width: 20px;
+      }
+    }
+  }
+
+  &__link {
+    color: $color-black;
+    position: relative;
+    transition: all 0.2s ease 0s;
+    &::after {
+      content: '';
+      bottom: -2px;
+      display: block;
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      background: $color-blue-medium;
+      transition:
+        width 0.2s ease 0s,
+        left 0.2s ease 0s;
+      width: 0;
+    }
+    @media (hover: hover) {
+      &:hover {
+        color: $color-blue-medium;
+        &::after {
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+  }
+}

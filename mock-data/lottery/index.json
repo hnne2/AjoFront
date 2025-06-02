@@ -1,0 +1,27 @@
+{
+  "seo": {
+    "meta": {
+      "title": "Розыгрыш призов",
+      "ogTitle": "Розыгрыш призов",
+      "description": "Это описание для страницы Розыгрыш призов",
+      "ogDescription": "Это описание для страницы Розыгрыш призов",
+      "ogImage": "/images/limkorm.jpg",
+      "twitterCard": "summary_large_image",
+      "robots": "noindex"
+    },
+    "H1": "Розыгрыш призов",
+    "content": null
+  },
+
+  "schemaOrg": [],
+  "prize": {
+    "id": 1,
+    "label": "Билет на VK fest",
+    "description": "Вы получили главный приз – билет на vk fest!",
+    "image": {
+      "url": "/images/prizes/vkfest.svg",
+      "alt": "alt"
+    },
+    "isPrize": true
+  }
+}

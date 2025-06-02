@@ -1,0 +1,82 @@
+@use './../general/variables.scss' as *;
+
+.btn {
+  cursor: pointer;
+  font-family:
+    'DecimaMonoPro',
+    -apple-system,
+    BlinkMacSystemFont,
+    Arial,
+    sans-serif;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.2s ease 0s;
+  &--m {
+    font-size: 18px;
+    height: 50px;
+    padding: 14px 24px;
+    @media (min-width: $tablet) {
+      font-size: 22px;
+      height: 56px;
+      padding: 16px 32px;
+    }
+  }
+  &--s {
+    font-size: 18px;
+    height: 50px;
+    padding: 14px 24px;
+  }
+  &--pink {
+    background-color: $color-pink-medium;
+    color: #ffffff;
+    @media (hover: hover) {
+      &:hover {
+        background-color: $color-pink-light;
+      }
+    }
+    &:active {
+      background-color: $color-pink-dark;
+    }
+  }
+  &--pink-outline {
+    background-color: transparent;
+    color: $color-pink-medium;
+    border: 2px solid $color-pink-medium;
+    @media (hover: hover) {
+      &:hover {
+        color: #ffffff;
+        border: 2px solid $color-pink-light;
+        background-color: $color-pink-light;
+      }
+    }
+    &:active {
+      color: #ffffff;
+      border: 2px solid $color-pink-dark;
+      background-color: $color-pink-dark;
+    }
+  }
+  &--white-outline {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    @media (hover: hover) {
+      &:hover {
+        color: $color-pink-light;
+        background-color: #ffffff;
+      }
+    }
+    &:active {
+      color: $color-pink-dark;
+      background-color: #ffffff;
+    }
+  }
+}

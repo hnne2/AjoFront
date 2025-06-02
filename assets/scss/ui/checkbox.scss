@@ -1,0 +1,88 @@
+@use './../general/variables.scss' as *;
+
+.checkbox {
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 12px;
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    &:checked + .checkbox__custom {
+      background-color: $color-blue-medium;
+    }
+    &:checked + .checkbox__custom::before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE0LjQxODYgNy4wNTQyTDguNTI2ODkgMTIuOTQ1OUw1LjU4MTA1IDEwIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiLz4KPC9zdmc+Cg==');
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &.error + .checkbox__custom {
+      border: 2px solid $color-red;
+    }
+  }
+
+  &__custom {
+    flex-shrink: 0;
+    display: block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    border: 2px solid $color-blue-medium;
+    border-radius: 4px;
+  }
+
+  &__text {
+    font-family:
+      'PTSans-Regular',
+      -apple-system,
+      BlinkMacSystemFont,
+      Arial,
+      sans-serif;
+    letter-spacing: normal;
+    text-transform: none;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    color: $color-black;
+    a {
+      text-decoration: underline;
+      @media (min-width: $tablet) {
+        text-decoration: none;
+        position: relative;
+        transition: all 0.2s ease 0s;
+        &::after {
+          content: '';
+          bottom: 0px;
+          display: block;
+          height: 1px;
+          left: 0;
+          position: absolute;
+          background: $color-black;
+          transition:
+            width 0.2s ease 0s,
+            left 0.2s ease 0s;
+          width: 100%;
+        }
+        @media (hover: hover) {
+          &:hover {
+            &::after {
+              width: 0;
+              left: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

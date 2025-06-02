@@ -1,0 +1,17 @@
+{
+  "seo": {
+    "meta": {
+      "title": "Главная страница",
+      "ogTitle": "Главная страница",
+      "description": "Это описание для страницы Главная страница",
+      "ogDescription": "Это описание для страницы Главная страница",
+      "ogImage": "/images/limkorm.jpg",
+      "twitterCard": "summary_large_image",
+      "robots": "noindex"
+    },
+    "H1": "Главная страница",
+    "content": null
+  },
+
+  "schemaOrg": []
+}
