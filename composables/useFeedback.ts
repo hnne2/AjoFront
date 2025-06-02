@@ -6,6 +6,7 @@ interface FormData {
   tel: string
   email: string
   agree: boolean
+  prize: string
 }
 
 const openSuccessModal = () => {
@@ -47,6 +48,7 @@ export default function useFeedback() {
     tel: '',
     email: '',
     agree: false,
+    prize: '',
   })
 
   const handleSubmit = async (values: any, actions: any) => {
@@ -54,10 +56,12 @@ export default function useFeedback() {
     errorStatusCode = undefined
 
     try {
+      const { agree, ...payload } = form
+
       await $fetch('/api/feedback/', {
         // baseURL: config.public.baseURL,
         method: 'POST',
-        body: form,
+        body: payload,
       })
 
       actions.resetForm()

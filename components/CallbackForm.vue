@@ -2,13 +2,20 @@
 import { vMaska } from 'maska/vue'
 import * as Yup from 'yup'
 
+const props = defineProps<{
+  prize: string
+}>()
+
 const { isLoading, form, handleSubmit } = useFeedback()
+
+form.prize = props.prize
 
 const schema = Yup.object().shape({
   name: Yup.string().required(),
   tel: Yup.string().required().length(16, 'Укажите корректный телефон'),
   email: Yup.string().required().email(),
   agree: Yup.boolean().oneOf([true], 'Вы должны согласиться с условиями'),
+  prize: Yup.string(),
 })
 </script>
 

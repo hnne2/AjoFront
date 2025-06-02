@@ -76,6 +76,9 @@ function handleCallback() {
       'Вы получили ' +
       data.value.prize?.label +
       '! Оставьте свои контакты, чтобы менеджер мог передать вам выигрыш.',
+    componentProps: {
+      prize: data.value.prize?.label,
+    },
     component: CallbackForm,
   })
 }
@@ -151,9 +154,6 @@ function handleCallback() {
     }
   }
 
-  &__item {
-  }
-
   &__info {
     margin-top: 32px;
     display: flex;
@@ -163,9 +163,6 @@ function handleCallback() {
     @media (min-width: $tablet) {
       margin-top: 60px;
     }
-  }
-
-  &__info-title {
   }
 
   &__info-desription {
@@ -178,6 +175,7 @@ function handleCallback() {
     align-items: stretch;
     flex-direction: column;
     gap: 16px;
+
     @media (min-width: $tablet) {
       flex-direction: row;
       align-items: center;

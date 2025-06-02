@@ -23,8 +23,6 @@ const actualPrize = computed<Prize>(() => {
   )
 })
 
-// console.log(actualPrize)
-
 // Проверка на Safari
 let isSafari = false
 if (import.meta.client) {
@@ -35,7 +33,6 @@ if (import.meta.client) {
 const scratchCardCover = ref<HTMLElement | null>(null)
 const scratchCardCanvasRender = ref<HTMLImageElement | null>(null)
 const scratchCardCoverContainer = ref<HTMLElement | null>(null)
-// const scratchCardText = ref<HTMLElement | null>(null)
 const scratchCardContent = ref<HTMLElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
 const contentVisible = ref<boolean>(false)

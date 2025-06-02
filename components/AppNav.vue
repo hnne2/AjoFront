@@ -26,8 +26,6 @@
     justify-content: center;
     gap: 24px;
   }
-  &__item {
-  }
 
   &__link {
     position: relative;

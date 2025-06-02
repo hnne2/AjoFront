@@ -5,6 +5,7 @@ interface Props {
   title?: string
   description?: string
   modalProps?: Record<string, unknown>
+  componentProps?: Record<string, unknown>
 }
 
 defineProps<Props>()
@@ -77,7 +78,7 @@ function handleModal(event: Event): void {
     </template>
 
     <template v-if="$slots.default">
-      <slot />
+      <slot :prize="componentProps" />
     </template>
 
     <template v-if="$slots.footer">
