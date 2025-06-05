@@ -53,6 +53,7 @@ export default defineNuxtConfig({
     '@vee-validate/nuxt',
     'nuxt-icons',
     '@hypernym/nuxt-gsap',
+    '@vueuse/nuxt',
   ],
   css: ['~/assets/scss/main.scss', 'vue-final-modal/style.css'],
   vite: {

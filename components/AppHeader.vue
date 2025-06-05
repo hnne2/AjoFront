@@ -49,15 +49,14 @@ const toggleMenu = () => {
     }
   }
   &__wrap {
-    @media (max-width: $tablet - 0.1) {
-      position: fixed;
+		@media (max-width: #{$tablet - 0.1px}) {
+			position: fixed;
       left: 0;
       top: 0;
       height: 100svh;
       width: 100%;
       opacity: 0;
       visibility: hidden;
-      // z-index: -2;
       transition:
         opacity 0.3s ease,
         visibility 0.3s ease;
@@ -79,8 +78,8 @@ const toggleMenu = () => {
   &__inner {
     display: flex;
     height: 100%;
-    @media (max-width: $tablet - 0.1) {
-      padding: 48px 16px;
+		@media (max-width: #{$tablet - 0.1px}) {
+			padding: 48px 16px;
       flex-direction: column;
       gap: 80px;
       overflow-y: auto;

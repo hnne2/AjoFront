@@ -1,0 +1,19 @@
+{
+  "seo": {
+    "meta": {
+      "title": "Загрузка чека",
+      "ogTitle": "Загрузка чека",
+      "description": "Это описание для страницы Загрузка чека",
+      "ogDescription": "Это описание для страницы Загрузка чека",
+      "ogImage": "/images/limkorm.jpg",
+      "twitterCard": "summary_large_image",
+      "robots": "noindex"
+    },
+    "H1": "Загрузка чека",
+    "content": null
+  },
+
+  "schemaOrg": [],
+  "status": "ready",
+  "lottery_id": "1749026209426"
+}

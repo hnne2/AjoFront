@@ -11,7 +11,7 @@ if (error.value) {
 </script>
 
 <template>
-  <h1 class="typo-h1">Заголовок</h1>
+  <h1 class="typo-h1">{{ data.seo.H1 }}</h1>
 </template>
 
 <style lang="scss" scoped></style>

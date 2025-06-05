@@ -7,6 +7,7 @@ interface FormData {
   email: string
   agree: boolean
   prize: string
+  lotteryId: string
 }
 
 const openSuccessModal = () => {
@@ -18,6 +19,8 @@ const openSuccessModal = () => {
     },
   })
 
+  const cookieLotteryStatus = useCookie<string | null>('lottery_status')
+  cookieLotteryStatus.value = 'end'
   open()
 }
 
@@ -49,6 +52,7 @@ export default function useFeedback() {
     email: '',
     agree: false,
     prize: '',
+    lotteryId: '',
   })
 
   const handleSubmit = async (values: any, actions: any) => {

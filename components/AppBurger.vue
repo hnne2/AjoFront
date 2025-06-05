@@ -22,10 +22,10 @@ watch(isOpen, (newVal) => {
     type="button"
     @click="toggleState"
   >
-    <div class="burger__inner">
+    <span class="burger__inner">
       <span></span>
       <span></span>
-    </div>
+    </span>
   </button>
 </template>
 
@@ -49,8 +49,6 @@ $cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99);
     height: 12px;
     position: relative;
     display: block;
-  }
-
   span {
     width: 100%;
     height: 2px;
@@ -66,10 +64,12 @@ $cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99);
       transform: translateY(8px) rotate(0deg);
     }
   }
+  }
+
 
   &.active {
     transform: rotate(90deg);
-    span {
+    .burger__inner span {
       transition: all 0.4s $cubic;
       transition-delay: 0.2s;
       &:first-child {

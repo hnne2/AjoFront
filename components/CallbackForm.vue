@@ -4,11 +4,13 @@ import * as Yup from 'yup'
 
 const props = defineProps<{
   prize: string
+  lotteryId: string
 }>()
 
 const { isLoading, form, handleSubmit } = useFeedback()
 
 form.prize = props.prize
+form.lotteryId = props.lotteryId
 
 const schema = Yup.object().shape({
   name: Yup.string().required(),
@@ -16,6 +18,7 @@ const schema = Yup.object().shape({
   email: Yup.string().required().email(),
   agree: Yup.boolean().oneOf([true], 'Вы должны согласиться с условиями'),
   prize: Yup.string(),
+  lotteryId: Yup.string(),
 })
 </script>
 

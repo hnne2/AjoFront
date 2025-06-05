@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { Prize } from '~/types/Prize'
+import type {Prize} from '~/types/Prize'
 
 const props = defineProps<{
   prize?: Prize | null
+  nocover?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -225,6 +226,7 @@ onMounted(() => {
   <div class="scratch-card">
     <div class="scratch-card__wrap">
       <div
+        v-show="!nocover"
         ref="scratchCardCoverContainer"
         class="scratch-card__cover-container"
       >
@@ -482,7 +484,6 @@ onMounted(() => {
       object-fit: contain;
       user-select: none;
       will-change: transform;
-      margin-bottom: 32px;
       width: 100%;
       margin-bottom: 8px;
       transform: rotate(0deg) scale(1);
@@ -513,7 +514,7 @@ onMounted(() => {
 
 @keyframes shine {
   50% {
-    background-position: 0% 0%;
+    background-position: 0 0;
   }
   100% {
     background-position: -50% -50%;

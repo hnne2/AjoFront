@@ -78,7 +78,7 @@ function handleModal(event: Event): void {
     </template>
 
     <template v-if="$slots.default">
-      <slot :prize="componentProps" />
+      <slot :data="componentProps" />
     </template>
 
     <template v-if="$slots.footer">

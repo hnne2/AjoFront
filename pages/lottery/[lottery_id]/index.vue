@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Prize } from '~/types/Prize'
+import type {Prize} from '~/types/Prize'
 import useUIModal from '~/composables/useUIModal'
 import CallbackForm from '~/components/CallbackForm.vue'
 import confetti from 'canvas-confetti'
@@ -10,7 +10,14 @@ useHead({
   },
 })
 
-const { data, error } = await useFetch<any>('/api/lottery/')
+const headers = useRequestHeaders(['cookie'])
+const { lottery_id } = useRoute().params
+const { data, error, refresh } = await useFetch<any>(
+  `/api/lottery/${lottery_id}`,
+  {
+    headers,
+  }
+)
 
 if (error.value) {
   throw createError({
@@ -20,12 +27,18 @@ if (error.value) {
   })
 }
 
+const cookieLotteryStatus = useCookie<string | null>('lottery_status')
 const { openModal } = useUIModal()
 const selectedPrize = ref<Prize | null>(null)
 const prizeCardIndex = ref(-1)
 const isWin = ref<boolean>(false)
 const isLoss = ref<boolean>(false)
 const countOpenCard = ref<number>(0)
+
+if (cookieLotteryStatus.value === 'end') {
+  cookieLotteryStatus.value = null
+  navigateTo(`/upload/`)
+}
 
 const cards = ref<{ key: number; prize?: Prize | null }[]>([
   { key: 0 },
@@ -49,6 +62,8 @@ function handleResult(result: boolean) {
   countOpenCard.value++
 
   if (result) {
+    cookieLotteryStatus.value = 'win'
+    refresh()
     isWin.value = true
     confetti({
       particleCount: 150,
@@ -64,6 +79,10 @@ function handleResult(result: boolean) {
     })
   } else {
     if (countOpenCard.value === 3) {
+      if (!cookieLotteryStatus.value) {
+        cookieLotteryStatus.value = 'end'
+        refresh()
+      }
       isLoss.value = true
     }
   }
@@ -78,6 +97,7 @@ function handleCallback() {
       '! Оставьте свои контакты, чтобы менеджер мог передать вам выигрыш.',
     componentProps: {
       prize: data.value.prize?.label,
+      lotteryId: lottery_id,
     },
     component: CallbackForm,
   })
@@ -93,22 +113,32 @@ function handleCallback() {
           v-for="card in cards"
           :key="card.key"
           :prize="card.prize"
+          :nocover="data.status !== 'ready'"
           @result="handleResult"
         />
       </div>
       <transition name="fade-scale" mode="out-in" appear>
-        <div v-if="isWin || isLoss" class="lottery__info">
+        <div
+          v-if="isWin || isLoss || data.status !== 'ready'"
+          class="lottery__info"
+        >
           <h2 class="lottery__info-title typo-h4">
-            <span v-if="isWin" v-html="data.prize?.description" />
+            <span
+              v-if="isWin || data.status === 'win'"
+              v-html="data.prize?.description"
+            />
             <span v-else>к СОЖАЛЕНИЮ, ТУТ НИЧЕГО НЕТ</span>
           </h2>
-          <p v-if="isWin" class="lottery__info-desription typo-p1">
+          <p
+            v-if="isWin || data.status === 'win'"
+            class="lottery__info-description typo-p1"
+          >
             Чтобы получить свой приз, оставьте свои контакты, чтобы менеджер
             связался с вами и передал выигрыш.
           </p>
           <div class="lottery__info-buttons">
             <button
-              v-if="isWin"
+              v-if="isWin || data.status === 'win'"
               class="btn btn--m btn--pink"
               @click="handleCallback"
             >
@@ -138,6 +168,7 @@ function handleCallback() {
   @media (min-width: $tablet) {
     padding: 70px 0 100px 0;
   }
+
   &__title {
     text-align: center;
   }
@@ -165,7 +196,7 @@ function handleCallback() {
     }
   }
 
-  &__info-desription {
+  &__info-description {
     margin-top: 16px;
   }
 
@@ -208,10 +239,12 @@ function handleCallback() {
     display: flex;
     align-items: center;
     gap: 12px;
+
     p {
       position: relative;
       display: inline;
       transition: all 0.2s ease 0s;
+
       &::after {
         content: '';
         bottom: -4px;
@@ -227,32 +260,17 @@ function handleCallback() {
       }
     }
   }
+
   &__stickers-icon {
     flex-shrink: 0;
     width: 24px;
     height: 24px;
+
     :deep(svg) {
       width: 100%;
       height: auto;
       margin: 0;
     }
   }
-}
-
-.fade-scale-enter-active,
-.fade-scale-leave-active {
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-.fade-scale-enter-from,
-.fade-scale-leave-to {
-  opacity: 0;
-  transform: scale(0.7);
-}
-.fade-scale-leave-from,
-.fade-scale-enter-to {
-  opacity: 1;
-  transform: scale(1);
 }
 </style>
