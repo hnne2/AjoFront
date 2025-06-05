@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Prize} from '~/types/Prize'
+import type { Prize } from '~/types/Prize'
 
 const props = defineProps<{
   prize?: Prize | null
@@ -16,7 +16,7 @@ const actualPrize = computed<Prize>(() => {
       id: -1,
       label: '<p>котик забрал приз <br> с этой карточки :(</p>',
       image: {
-        url: '/images/cat.svg',
+        url: '/images/lottery/cat.svg',
         alt: 'alt',
       },
       isPrize: false,
@@ -381,7 +381,7 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     cursor:
-      url('/images/cursor-default.png') 16 16,
+      url('/images/lottery/cursor-default.png') 16 16,
       grab;
     touch-action: none;
 
@@ -391,7 +391,7 @@ onMounted(() => {
 
     &:active {
       cursor:
-        url('/images/cursor-press.png') 16 16,
+        url('/images/lottery/cursor-press.png') 16 16,
         grabbing;
     }
   }
@@ -420,7 +420,7 @@ onMounted(() => {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('/images/cover.jpg') no-repeat;
+    background: url('/images/lottery/cover.jpg') no-repeat;
     background-size: cover;
     .scratch-card:nth-child(1) & {
       background-position: left top;

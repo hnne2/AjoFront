@@ -122,7 +122,7 @@ const schema = Yup.object().shape({
             <span class="checkbox__custom"></span>
             <span class="checkbox__text">
               Я соглашаюсь с
-              <NuxtLink to="#" target="_blank"
+              <NuxtLink to="/politika/" target="_blank"
                 >Политикой Конфиденциальности</NuxtLink
               >
               сайта

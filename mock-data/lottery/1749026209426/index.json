@@ -20,7 +20,7 @@
     "label": "Билет на VK fest",
     "description": "Вы получили главный приз – билет на vk fest!",
     "image": {
-      "url": "/images/prizes/vkfest.svg",
+      "url": "/images/lottery/vkfest.svg",
       "alt": "alt"
     },
     "isPrize": true

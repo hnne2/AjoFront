@@ -149,7 +149,7 @@ function handleCallback() {
             </NuxtLink>
           </div>
           <NuxtLink class="lottery__stickers" to="/" target="_blank">
-            <img src="/images/stickers.png" alt="stickers" />
+            <img src="/images/lottery/stickers.png" alt="stickers" />
             <div class="lottery__stickers-wrap">
               <p>Забрать стикеры для телеграма</p>
               <NuxtIcon class="lottery__stickers-icon" name="icon-arrow" />

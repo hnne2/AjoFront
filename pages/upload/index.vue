@@ -263,7 +263,7 @@ const onRestart = () => {
     justify-content: center;
     width: 100%;
     height: 340px;
-    background-image: url('/images/pattern-bone.svg');
+    background-image: url('/images/upload/pattern-bone.svg');
     background-repeat: repeat;
     background-position: top left;
     background-color: rgba(255, 255, 255, 0.2);

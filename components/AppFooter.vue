@@ -17,14 +17,14 @@
             <NuxtLink to="/" target="_blank">Правила акции</NuxtLink>
           </div>
           <div class="footer__bottom-list-item">
-            <NuxtLink to="/" target="_blank"
-              >Пользовательское соглашение</NuxtLink
-            >
+            <NuxtLink to="/" target="_blank">
+              Пользовательское соглашение
+            </NuxtLink>
           </div>
           <div class="footer__bottom-list-item">
-            <NuxtLink to="/" target="_blank"
-              >Политика конфиденциальности</NuxtLink
-            >
+            <NuxtLink to="/politika/" target="_blank">
+              Политика конфиденциальности
+            </NuxtLink>
           </div>
         </div>
       </div>
