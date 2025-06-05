@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type {Prize} from '~/types/Prize'
+import type { Prize } from '~/types/Prize'
 import useUIModal from '~/composables/useUIModal'
 import CallbackForm from '~/components/CallbackForm.vue'
 import confetti from 'canvas-confetti'
