@@ -1,11 +1,9 @@
 <script lang="ts" setup>
-const isOpen = ref<boolean>(false)
+const props = defineProps<{
+  openMenu: boolean
+}>()
 
-const toggleState = () => {
-  isOpen.value = !isOpen.value
-}
-
-watch(isOpen, (newVal) => {
+watch(toRef(props, 'openMenu'), (newVal) => {
   const htmlEl = document.documentElement
   if (newVal) {
     htmlEl.classList.add('lock')
@@ -16,12 +14,7 @@ watch(isOpen, (newVal) => {
 </script>
 
 <template>
-  <button
-    class="burger"
-    :class="{ active: isOpen }"
-    type="button"
-    @click="toggleState"
-  >
+  <button class="burger" :class="{ active: openMenu }" type="button">
     <span class="burger__inner">
       <span></span>
       <span></span>
@@ -49,23 +42,22 @@ $cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99);
     height: 12px;
     position: relative;
     display: block;
-  span {
-    width: 100%;
-    height: 2px;
-    display: block;
-    position: relative;
-    background: $color-black;
-    transition: all 0.3s $cubic;
-    transition-delay: 0s;
-    &:first-child {
-      transform: translateY(0px) rotate(0deg);
-    }
-    &:last-child {
-      transform: translateY(8px) rotate(0deg);
+    span {
+      width: 100%;
+      height: 2px;
+      display: block;
+      position: relative;
+      background: $color-black;
+      transition: all 0.3s $cubic;
+      transition-delay: 0s;
+      &:first-child {
+        transform: translateY(0px) rotate(0deg);
+      }
+      &:last-child {
+        transform: translateY(8px) rotate(0deg);
+      }
     }
   }
-  }
-
 
   &.active {
     transform: rotate(90deg);

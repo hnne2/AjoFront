@@ -1,18 +1,25 @@
 <script lang="ts" setup>
-const isOpen = ref<boolean>(false)
+const isOpenMenu = ref<boolean>(false)
 
 const toggleMenu = () => {
-  isOpen.value = !isOpen.value
+  isOpenMenu.value = !isOpenMenu.value
+}
+
+const handleMenuBody = (event: Event) => {
+  const target = event.target as HTMLElement
+  if (target.closest('a') && isOpenMenu.value) {
+    toggleMenu()
+  }
 }
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" @click="handleMenuBody">
     <div class="container">
       <NuxtLink class="header__logo-mobile" to="/">
         <AppLogo />
       </NuxtLink>
-      <div class="header__wrap" :class="{ active: isOpen }">
+      <div class="header__wrap" :class="{ active: isOpenMenu }">
         <div class="header__inner">
           <NuxtLink class="header__logo-desktop" to="/">
             <AppLogo />
@@ -24,7 +31,7 @@ const toggleMenu = () => {
         </div>
       </div>
       <div class="header__burger">
-        <AppBurger @click="toggleMenu" />
+        <AppBurger :open-menu="isOpenMenu" @click="toggleMenu" />
       </div>
     </div>
   </header>
@@ -49,8 +56,8 @@ const toggleMenu = () => {
     }
   }
   &__wrap {
-		@media (max-width: #{$tablet - 0.1px}) {
-			position: fixed;
+    @media (max-width: #{$tablet - 0.1px}) {
+      position: fixed;
       left: 0;
       top: 0;
       height: 100svh;
@@ -78,8 +85,8 @@ const toggleMenu = () => {
   &__inner {
     display: flex;
     height: 100%;
-		@media (max-width: #{$tablet - 0.1px}) {
-			padding: 48px 16px;
+    @media (max-width: #{$tablet - 0.1px}) {
+      padding: 48px 16px;
       flex-direction: column;
       gap: 80px;
       overflow-y: auto;
