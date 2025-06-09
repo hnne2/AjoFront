@@ -8,6 +8,7 @@ export default defineEventHandler(async (event) => {
     )
 
     const files = await readMultipartFormData(event)
+    // eslint-disable-next-line no-console
     console.log(files)
     return 'Успешно'
   } catch (error) {

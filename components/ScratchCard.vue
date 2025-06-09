@@ -242,11 +242,12 @@ onMounted(() => {
       <div v-show="contentVisible" class="scratch-card__content">
         <img
           ref="scratchCardContent"
-          :src="actualPrize.image.url"
+          :src="`http://localhost:8081/ajoApi/images/${actualPrize.image.url}`"
           :alt="actualPrize.image.alt"
         />
         <div class="scratch-card__content-text" v-html="actualPrize.label" />
       </div>
+
     </div>
   </div>
 </template>

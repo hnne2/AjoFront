@@ -4,10 +4,14 @@ useHead({
     class: 'bg-blue',
   },
 })
-
+const baseUrl = window.location.origin
 const headers = useRequestHeaders(['cookie'])
-const { data, error, refresh } = await useFetch<any>('/api/upload/', {
+const cookieId = useCookie<string | null>('chek_id')
+const chekId = ref<string | null>(null)
+
+const { data, error, refresh } = await useFetch<any>(`${baseUrl}/ajo/upload`, {
   headers,
+  query: cookieId.value ? { chek_id: cookieId.value } : {},
 })
 
 if (error.value) {
@@ -18,8 +22,7 @@ if (error.value) {
   })
 }
 
-const cookieId = useCookie<string | null>('chek_id')
-const chekId = ref<string | null>(null)
+
 const inputRef = ref<HTMLInputElement>()
 const onDropZone = ref<HTMLDivElement>()
 const formData = new FormData()
@@ -36,14 +39,26 @@ const checkStatus = async () => {
   if (import.meta.server) return
 
   const pollInterval = setInterval(async () => {
-    await refresh()
+    try {
+      const result = await $fetch(`${baseUrl}/ajo/upload`, {
+        method: 'GET',
+        query: { chek_id: cookieId.value! },
+      })
 
-    if (data.value?.status !== 'ready' && data.value?.status !== 'check') {
+      if (result.status !== 'ready' && result.status !== 'check') {
+        clearInterval(pollInterval)
+        isLoading.value = false
+      }
+
+      data.value = result // если хочешь сохранить в `data`
+    } catch (e) {
       clearInterval(pollInterval)
       isLoading.value = false
+      errorMessage.value = 'Ошибка при проверке статуса'
     }
   }, 5000)
 }
+
 
 if (data.value?.status == 'check') {
   checkStatus()
@@ -68,17 +83,18 @@ async function handleFile(file: File) {
   cookieId.value = null
 
   chekId.value = Date.now().toString()
+  document.cookie = `chek_id=${chekId.value}; path=/; max-age=31536000`
+
   formData.append('chek_id', chekId.value)
   formData.append('file', file, file.name.replaceAll(' ', '-').toLowerCase())
 
   try {
-    await $fetch('/api/upload', {
+    await $fetch(`${baseUrl}/ajo/upload`, {
       method: 'POST',
       body: formData,
     })
     isUpload.value = true
     cookieId.value = chekId.value
-
     await nextTick()
     checkStatus()
   } catch {
