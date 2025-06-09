@@ -51,7 +51,7 @@ const checkStatus = async () => {
       }
 
       data.value = result // если хочешь сохранить в `data`
-    } catch (e) {
+    } catch {
       clearInterval(pollInterval)
       isLoading.value = false
       errorMessage.value = 'Ошибка при проверке статуса'
