@@ -41,6 +41,12 @@ defineProps<{
       margin-top: 48px;
       padding-top: 48px;
     }
+    p {
+      margin-top: 8px;
+      @media (min-width: $tablet) {
+        margin-top: 16px;
+      }
+    }
   }
 }
 </style>
