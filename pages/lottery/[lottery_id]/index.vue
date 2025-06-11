@@ -9,11 +9,12 @@ useHead({
     class: 'bg-purple',
   },
 })
+const baseUrl = window.location.origin
 
 const headers = useRequestHeaders(['cookie'])
 const { lottery_id } = useRoute().params
 const { data, error, refresh } = await useFetch<any>(
-  `/api/lottery/${lottery_id}`,
+    `${baseUrl}/ajo/lottery/${lottery_id}`,
   {
     headers,
   }
@@ -27,7 +28,8 @@ if (error.value) {
   })
 }
 
-const cookieLotteryStatus = useCookie<string | null>('lottery_status')
+const currentStatusKey = `lottery_status_${lottery_id}`
+const cookieLotteryStatus = useCookie<string | null>(currentStatusKey)
 const { openModal } = useUIModal()
 const selectedPrize = ref<Prize | null>(null)
 const prizeCardIndex = ref(-1)
@@ -48,9 +50,8 @@ const cards = ref<{ key: number; prize?: Prize | null }[]>([
 
 onMounted(() => {
   selectedPrize.value = data.value?.prize ?? null
-  prizeCardIndex.value = selectedPrize.value
-    ? Math.floor(Math.random() * 3)
-    : -1
+  const backendIndex = data.value?.prizeCardIndex
+  prizeCardIndex.value = (backendIndex >= 0 && backendIndex < 3) ? backendIndex : -1
 
   cards.value = [0, 1, 2].map((idx) => ({
     key: idx,
@@ -123,7 +124,7 @@ if (data.value) {
           :key="card.key"
           :prize="card.prize"
           :nocover="data.status !== 'ready'"
-          @result="handleResult"
+          @result="() => handleResult(card.prize != null)"
         />
       </div>
       <transition name="fade-scale" mode="out-in" appear>

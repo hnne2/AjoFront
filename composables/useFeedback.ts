@@ -54,6 +54,7 @@ export default function useFeedback() {
     prize: '',
     lotteryId: '',
   })
+  const baseUrl = window.location.origin
 
   const handleSubmit = async (values: any, actions: any) => {
     isLoading.value = true
@@ -62,7 +63,7 @@ export default function useFeedback() {
     try {
       const { agree, ...payload } = form
 
-      await $fetch('/api/feedback/', {
+      await $fetch(`${baseUrl}/ajo/feedback/`, {
         // baseURL: config.public.baseURL,
         method: 'POST',
         body: payload,
