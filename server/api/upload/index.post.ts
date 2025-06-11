@@ -1,4 +1,4 @@
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (_event) => {
   try {
     await new Promise((resolve, _reject) =>
       setTimeout(() => {
@@ -7,9 +7,8 @@ export default defineEventHandler(async (event) => {
       }, 1000)
     )
 
-    const files = await readMultipartFormData(event)
-    // eslint-disable-next-line no-console
-    console.log(files)
+    // const files = await readMultipartFormData(event)
+    // console.log(files)
     return 'Успешно'
   } catch (error) {
     return {

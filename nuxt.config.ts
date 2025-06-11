@@ -10,14 +10,17 @@ export default defineNuxtConfig({
   },
 
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in',
+    },
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, minimum-scale=1, maximum-scale=1',
       htmlAttrs: {
         lang: 'ru',
       },
-      /* meta: [{ name: 'apple-mobile-web-app-title', content: 'Limkorm' }],
+      meta: [{ name: 'apple-mobile-web-app-title', content: 'AJO' }],
       link: [
         {
           rel: 'icon',
@@ -44,19 +47,24 @@ export default defineNuxtConfig({
           rel: 'manifest',
           href: '/site.webmanifest',
         },
-      ], */
+      ],
     },
   },
 
   modules: [
+    '@pinia/nuxt',
     '@nuxt/eslint',
     '@nuxt/ui',
     '@vee-validate/nuxt',
-    'nuxt-icons',
-    '@hypernym/nuxt-gsap',
     '@vueuse/nuxt',
+    'nuxt-schema-org',
+    'nuxt-icons',
   ],
-  css: ['~/assets/scss/main.scss', 'vue-final-modal/style.css'],
+  css: [
+    '~/assets/scss/main.scss',
+    '~/assets/css/main.css',
+    'vue-final-modal/style.css',
+  ],
   vite: {
     plugins: [
       checker({

@@ -1,113 +1,48 @@
+@use './variables' as *;
+
 .user-content {
-  h1 {
-    font-weight: 600;
-    font-size: val(22, 24);
-    line-height: 140%;
-
-    &:not(:first-child) {
-      margin-top: 32px;
-    }
-
-    &:not(:last-child) {
-      margin-bottom: 32px;
-    }
-  }
-
   h2 {
-    font-weight: 600;
-    font-size: val(20, 22);
-    line-height: 140%;
-
-    &:not(:first-child) {
-      margin-top: 40px;
-    }
-
-    &:not(:last-child) {
-      margin-bottom: 32px;
+    margin-top: 24px;
+    @media (min-width: $tablet) {
+      margin-top: 48px;
     }
   }
-
-  h3 {
-    font-weight: 600;
-    font-size: val(16, 18);
-    line-height: 140%;
-
-    &:not(:first-child) {
-      margin-top: 40px;
-    }
-
-    &:not(:last-child) {
-      margin-bottom: 24px;
-    }
-  }
-
-  p {
+  p,
+  ul,
+  ol {
+    font-family:
+      'PTSans-Regular',
+      -apple-system,
+      BlinkMacSystemFont,
+      Arial,
+      sans-serif;
+    letter-spacing: normal;
+    text-transform: none;
     font-weight: 400;
-    font-size: val(16, 18);
+    font-size: val(14, 16);
     line-height: 140%;
   }
-
-  p:not(:first-child) {
+  p {
     margin-top: 8px;
+    @media (min-width: $tablet) {
+      margin-top: 16px;
+    }
   }
-  p:not(:last-child) {
-    margin-bottom: 8px;
+  ol {
+    list-style-type: decimal;
   }
   ul,
   ol {
-    display: grid;
-    row-gap: 6px;
-    padding-left: 32px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 135%;
+    padding-left: 38px;
+    list-style-position: outside;
+    li {
+      margin-top: 8px;
+      padding-left: 8px;
+    }
   }
-
   ul {
-    list-style: disc;
-  }
-
-  ol {
-    list-style: numeric;
-  }
-
-  ul:not(:first-child),
-  ol:not(:first-child) {
-    margin-top: 16px;
-  }
-
-  ul:not(:last-child),
-  ol:not(:last-child) {
-    margin-bottom: 24px;
-  }
-
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  table tbody {
-    width: 100%;
-    overflow: hidden;
-    overflow-y: auto;
-  }
-
-  table:not(:first-child) {
-    margin-top: 40px;
-  }
-
-  table:not(:last-child) {
-    margin-bottom: 40px;
-  }
-
-  table th {
-    font-weight: 500;
-  }
-
-  table td {
-    border: 1px solid $color-neutral-400;
-    padding: 8px;
-    min-width: 160px;
+    li {
+      list-style: disc;
+    }
   }
 }

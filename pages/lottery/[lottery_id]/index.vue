@@ -6,10 +6,11 @@ import confetti from 'canvas-confetti'
 
 useHead({
   bodyAttrs: {
-    class: 'bg-pink',
+    class: 'bg-purple',
   },
 })
 const baseUrl = window.location.origin
+
 const headers = useRequestHeaders(['cookie'])
 const { lottery_id } = useRoute().params
 const { data, error, refresh } = await useFetch<any>(
@@ -49,7 +50,6 @@ const cards = ref<{ key: number; prize?: Prize | null }[]>([
 
 onMounted(() => {
   selectedPrize.value = data.value?.prize ?? null
-
   const backendIndex = data.value?.prizeCardIndex
   prizeCardIndex.value = (backendIndex >= 0 && backendIndex < 3) ? backendIndex : -1
 
@@ -103,6 +103,15 @@ function handleCallback() {
     component: CallbackForm,
   })
 }
+
+if (data.value) {
+  if (data.value.seo && data.value.seo.meta) {
+    useSeoMeta(data.value.seo.meta)
+  }
+  if (data.value.schemaOrg) {
+    useSchemaOrg(data.value.schemaOrg)
+  }
+}
 </script>
 
 <template>
@@ -140,7 +149,7 @@ function handleCallback() {
           <div class="lottery__info-buttons">
             <button
               v-if="isWin || data.status === 'win'"
-              class="btn btn--m btn--pink"
+              class="btn btn--m btn--black"
               @click="handleCallback"
             >
               Связаться с организаторами
@@ -149,10 +158,17 @@ function handleCallback() {
               Загрузить еще чек
             </NuxtLink>
           </div>
-          <NuxtLink class="lottery__stickers" to="/" target="_blank">
-            <img src="/images/lottery/stickers.png" alt="stickers" />
+          <NuxtLink
+            class="lottery__stickers"
+            :to="data.stickers.link.to"
+            target="_blank"
+          >
+            <img
+              :src="data.stickers.image.url"
+              :alt="data.stickers.image.alt"
+            />
             <div class="lottery__stickers-wrap">
-              <p>Забрать стикеры для телеграма</p>
+              <p>{{ data.stickers.link.label }}</p>
               <NuxtIcon class="lottery__stickers-icon" name="icon-arrow" />
             </div>
           </NuxtLink>

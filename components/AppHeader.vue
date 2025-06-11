@@ -1,30 +1,37 @@
 <script lang="ts" setup>
-const isOpen = ref<boolean>(false)
+const isOpenMenu = ref<boolean>(false)
 
 const toggleMenu = () => {
-  isOpen.value = !isOpen.value
+  isOpenMenu.value = !isOpenMenu.value
+}
+
+const handleMenuBody = (event: Event) => {
+  const target = event.target as HTMLElement
+  if (target.closest('a') && isOpenMenu.value) {
+    toggleMenu()
+  }
 }
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" @click="handleMenuBody">
     <div class="container">
       <NuxtLink class="header__logo-mobile" to="/">
         <AppLogo />
       </NuxtLink>
-      <div class="header__wrap" :class="{ active: isOpen }">
+      <div class="header__wrap" :class="{ active: isOpenMenu }">
         <div class="header__inner">
           <NuxtLink class="header__logo-desktop" to="/">
             <AppLogo />
           </NuxtLink>
           <AppNav />
-          <NuxtLink class="btn btn--s btn--pink-outline" to="/upload/">
+          <NuxtLink class="btn btn--s btn--black-outline" to="/upload/">
             Загрузить чек
           </NuxtLink>
         </div>
       </div>
       <div class="header__burger">
-        <AppBurger @click="toggleMenu" />
+        <AppBurger :open-menu="isOpenMenu" @click="toggleMenu" />
       </div>
     </div>
   </header>
@@ -38,6 +45,7 @@ const toggleMenu = () => {
   @media (min-width: $tablet) {
     height: 80px;
   }
+
   .container {
     height: 100%;
     display: flex;
@@ -49,8 +57,8 @@ const toggleMenu = () => {
     }
   }
   &__wrap {
-		@media (max-width: #{$tablet - 0.1px}) {
-			position: fixed;
+    @media (max-width: #{$tablet - 0.1px}) {
+      position: fixed;
       left: 0;
       top: 0;
       height: 100svh;
@@ -63,23 +71,23 @@ const toggleMenu = () => {
       padding-top: 64px;
       background-color: #fff;
     }
-    @media (min-width: $tablet) {
-      height: 100%;
-    }
     &.active {
       opacity: 1;
       visibility: visible;
-      z-index: 2;
+      z-index: 5;
       transition:
         opacity 0.3s ease,
         visibility 0.3s ease;
+    }
+    @media (min-width: $tablet) {
+      height: 100%;
     }
   }
   &__inner {
     display: flex;
     height: 100%;
-		@media (max-width: #{$tablet - 0.1px}) {
-			padding: 48px 16px;
+    @media (max-width: #{$tablet - 0.1px}) {
+      padding: 48px 16px;
       flex-direction: column;
       gap: 80px;
       overflow-y: auto;
@@ -93,21 +101,21 @@ const toggleMenu = () => {
   &__logo-mobile {
     flex-shrink: 0;
     width: val(96, 128);
-    z-index: 3;
+    z-index: 6;
     @media (min-width: $tablet) {
       display: none;
     }
   }
   &__logo-desktop {
     display: none;
+    flex-shrink: 0;
+    width: val(96, 128);
     @media (min-width: $tablet) {
       display: block;
     }
-    flex-shrink: 0;
-    width: val(96, 128);
   }
   &__burger {
-    z-index: 3;
+    z-index: 6;
     display: flex;
     align-items: center;
     @media (min-width: $tablet) {

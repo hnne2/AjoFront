@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 useHead({
   bodyAttrs: {
-    class: 'bg-blue',
+    class: 'bg-purple',
   },
 })
+
 const baseUrl = window.location.origin
 const headers = useRequestHeaders(['cookie'])
 const cookieId = useCookie<string | null>('chek_id')
@@ -21,7 +22,6 @@ if (error.value) {
     fatal: true,
   })
 }
-
 
 const inputRef = ref<HTMLInputElement>()
 const onDropZone = ref<HTMLDivElement>()
@@ -59,7 +59,6 @@ const checkStatus = async () => {
   }, 5000)
 }
 
-
 if (data.value?.status == 'check') {
   checkStatus()
 }
@@ -95,9 +94,12 @@ async function handleFile(file: File) {
     })
     isUpload.value = true
     cookieId.value = chekId.value
+
     await nextTick()
-    checkStatus()
+		checkStatus()
   } catch {
+    isLoading.value = false
+    cookieId.value = null
     return (errorMessage.value = 'Что то пошло не так, попробуйте еще раз')
   }
 }
@@ -133,6 +135,15 @@ const toLottery = () => {
 const onRestart = () => {
   cookieId.value = null
   refresh()
+}
+
+if (data.value) {
+  if (data.value.seo && data.value.seo.meta) {
+    useSeoMeta(data.value.seo.meta)
+  }
+  if (data.value.schemaOrg) {
+    useSchemaOrg(data.value.schemaOrg)
+  }
 }
 </script>
 

@@ -159,13 +159,6 @@ function handleModal(event: Event): void {
       width: 32px;
       height: 32px;
     }
-
-    @media (hover: hover) {
-      &:hover,
-      &:focus-visible {
-        color: $color-blue-medium;
-      }
-    }
   }
 
   &__header:not(:last-child) {

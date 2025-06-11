@@ -304,7 +304,8 @@ onMounted(() => {
     content: '';
     position: absolute;
     border-radius: 16px;
-    background-color: $color-pink-medium;
+    background-color: #ffffff;
+    opacity: 0.6;
     width: 100%;
     height: 100%;
     aspect-ratio: 306/410;
@@ -467,6 +468,9 @@ onMounted(() => {
 
   &__content {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: $color-black;
     padding: 0 16px;
     @media (min-width: $tablet) {

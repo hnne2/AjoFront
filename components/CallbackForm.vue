@@ -135,7 +135,7 @@ const schema = Yup.object().shape({
         </div>
       </Field>
     </div>
-    <button :disabled="isLoading" class="btn btn--m btn--pink" type="submit">
+    <button :disabled="isLoading" class="btn btn--m btn--black" type="submit">
       Отправить
     </button>
   </Form>
