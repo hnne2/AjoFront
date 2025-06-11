@@ -143,7 +143,6 @@ const checkBlackFillPercentage = () => {
   if (blackFillPercentage >= 45) {
     const container = scratchCardCoverContainer.value
     container.classList.add('clear')
-    contentVisible.value = true
 
     if (actualPrize.value.isPrize) {
       emit('result', true)
@@ -196,9 +195,9 @@ onMounted(() => {
   }
 
   // Небольшой delay, чтобы точно избежать мигания картинки
-  // requestAnimationFrame(() => {
-  //   contentVisible.value = true
-  // })
+  requestAnimationFrame(() => {
+    contentVisible.value = true
+  })
 
   canvas.value.addEventListener('pointerdown', (e: PointerEvent) => {
     if (!scratchCardCover.value) return
@@ -241,7 +240,10 @@ onMounted(() => {
           alt=""
         />
       </div>
-      <div v-show="contentVisible" class="scratch-card__content">
+      <div
+          class="scratch-card__content"
+          :class="{ 'scratch-card__content--visible': contentVisible }"
+      >
         <img
           ref="scratchCardContent"
           :src="`${baseUrl}/ajo/images/${actualPrize.image.url}`"
@@ -300,7 +302,16 @@ onMounted(() => {
       }
     }
   }
+  .scratch-card__content {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
 
+    &--visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
   &::before {
     content: '';
     position: absolute;
