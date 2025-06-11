@@ -240,10 +240,7 @@ onMounted(() => {
           alt=""
         />
       </div>
-      <div
-          class="scratch-card__content"
-          :class="{ 'scratch-card__content--visible': contentVisible }"
-      >
+      <div v-show="contentVisible" class="scratch-card__content">
         <img
           ref="scratchCardContent"
           :src="`${baseUrl}/ajo/images/${actualPrize.image.url}`"
@@ -302,16 +299,7 @@ onMounted(() => {
       }
     }
   }
-  .scratch-card__content {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
 
-    &--visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
   &::before {
     content: '';
     position: absolute;
