@@ -10,14 +10,13 @@ useHead({
   },
 })
 const baseUrl = window.location.origin
-
 const headers = useRequestHeaders(['cookie'])
 const { lottery_id } = useRoute().params
 const { data, error, refresh } = await useFetch<any>(
     `${baseUrl}/ajo/lottery/${lottery_id}`,
-  {
-    headers,
-  }
+    {
+      headers,
+    }
 )
 
 if (error.value) {
@@ -52,6 +51,7 @@ onMounted(() => {
   selectedPrize.value = data.value?.prize ?? null
   const backendIndex = data.value?.prizeCardIndex
   prizeCardIndex.value = (backendIndex >= 0 && backendIndex < 3) ? backendIndex : -1
+
 
   cards.value = [0, 1, 2].map((idx) => ({
     key: idx,
@@ -93,9 +93,9 @@ function handleCallback() {
   openModal({
     title: 'Связаться для <br> получения приза',
     description:
-      'Вы получили ' +
-      data.value.prize?.label +
-      '! Оставьте свои контакты, чтобы менеджер мог передать вам выигрыш.',
+        'Вы получили ' +
+        data.value.prize?.label +
+        '! Оставьте свои контакты, чтобы менеджер мог передать вам выигрыш.',
     componentProps: {
       prize: data.value.prize?.label,
       lotteryId: lottery_id,
@@ -120,37 +120,37 @@ if (data.value) {
       <h1 class="lottery__title typo-h2">Сотрите защитный слой с карточки</h1>
       <div class="lottery__list">
         <ScratchCard
-          v-for="card in cards"
-          :key="card.key"
-          :prize="card.prize"
-          :nocover="data.status !== 'ready'"
-          @result="() => handleResult(card.prize != null)"
+            v-for="card in cards"
+            :key="card.key"
+            :prize="card.prize"
+            :nocover="data.status !== 'ready'"
+            @result="() => handleResult(card.prize != null)"
         />
       </div>
       <transition name="fade-scale" mode="out-in" appear>
         <div
-          v-if="isWin || isLoss || data.status !== 'ready'"
-          class="lottery__info"
+            v-if="isWin || isLoss || data.status !== 'ready'"
+            class="lottery__info"
         >
           <h2 class="lottery__info-title typo-h4">
             <span
-              v-if="isWin || data.status === 'win'"
-              v-html="data.prize?.description"
+                v-if="isWin || data.status === 'win'"
+                v-html="data.prize?.description"
             />
             <span v-else>к СОЖАЛЕНИЮ, ТУТ НИЧЕГО НЕТ</span>
           </h2>
           <p
-            v-if="isWin || data.status === 'win'"
-            class="lottery__info-description typo-p1"
+              v-if="isWin || data.status === 'win'"
+              class="lottery__info-description typo-p1"
           >
             Чтобы получить свой приз, оставьте свои контакты, чтобы менеджер
             связался с вами и передал выигрыш.
           </p>
           <div class="lottery__info-buttons">
             <button
-              v-if="isWin || data.status === 'win'"
-              class="btn btn--m btn--black"
-              @click="handleCallback"
+                v-if="isWin || data.status === 'win'"
+                class="btn btn--m btn--black"
+                @click="handleCallback"
             >
               Связаться с организаторами
             </button>
@@ -159,13 +159,13 @@ if (data.value) {
             </NuxtLink>
           </div>
           <NuxtLink
-            class="lottery__stickers"
-            :to="data.stickers.link.to"
-            target="_blank"
+              class="lottery__stickers"
+              :to="data.stickers.link.to"
+              target="_blank"
           >
             <img
-              :src="data.stickers.image.url"
-              :alt="data.stickers.image.alt"
+                :src="`${baseUrl}/ajo/images/${data.stickers.image.url}`"
+                :alt="data.stickers.image.alt"
             />
             <div class="lottery__stickers-wrap">
               <p>{{ data.stickers.link.label }}</p>
@@ -271,8 +271,8 @@ if (data.value) {
         position: absolute;
         background: #ffffff;
         transition:
-          width 0.2s ease 0s,
-          left 0.2s ease 0s;
+            width 0.2s ease 0s,
+            left 0.2s ease 0s;
         width: 0;
       }
     }
