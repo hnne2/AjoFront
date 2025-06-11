@@ -93,7 +93,7 @@ function handleCallback() {
   openModal({
     title: 'Связаться для <br> получения приза',
     description:
-        'Вы получили ' +
+        'Ваш выигрыш ' +
         data.value.prize?.label +
         '! Оставьте свои контакты, чтобы менеджер мог передать вам выигрыш.',
     componentProps: {
