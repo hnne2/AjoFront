@@ -14,10 +14,10 @@
         <p>© 2025 Все права защищены «AJO»</p>
         <div class="footer__bottom-list">
           <div class="footer__bottom-list-item">
-            <NuxtLink to="/" target="_blank">Правила акции</NuxtLink>
+            <NuxtLink to="/rules/" target="_blank">Правила акции</NuxtLink>
           </div>
           <div class="footer__bottom-list-item">
-            <NuxtLink to="/" target="_blank">
+            <NuxtLink to="/agreement/" target="_blank">
               Пользовательское соглашение
             </NuxtLink>
           </div>

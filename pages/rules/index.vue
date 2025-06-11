@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { data, error } = await useFetch<any>('/api/politika/')
+const { data, error } = await useFetch<any>('/api/rules/')
 
 if (error.value) {
   throw createError({
