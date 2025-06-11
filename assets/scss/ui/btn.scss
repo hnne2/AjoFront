@@ -35,33 +35,36 @@
     height: 50px;
     padding: 14px 24px;
   }
-  &--pink {
-    background-color: $color-pink-medium;
+  &--black {
+    background-color: $color-black;
     color: #ffffff;
+    border: 2px solid transparent;
     @media (hover: hover) {
       &:hover {
-        background-color: $color-pink-light;
+        background-color: $color-purple-light;
+        border: 2px solid transparent;
       }
     }
     &:active {
-      background-color: $color-pink-dark;
+      background-color: $color-purple-medium;
+      border: 2px solid $color-black;
     }
   }
-  &--pink-outline {
+  &--black-outline {
     background-color: transparent;
-    color: $color-pink-medium;
-    border: 2px solid $color-pink-medium;
+    color: $color-black;
+    border: 2px solid $color-black;
     @media (hover: hover) {
       &:hover {
         color: #ffffff;
-        border: 2px solid $color-pink-light;
-        background-color: $color-pink-light;
+        background-color: $color-purple-light;
+        border: 2px solid transparent;
       }
     }
     &:active {
       color: #ffffff;
-      border: 2px solid $color-pink-dark;
-      background-color: $color-pink-dark;
+      background-color: $color-purple-medium;
+      border: 2px solid $color-black;
     }
   }
   &--white-outline {
@@ -70,12 +73,12 @@
     border: 2px solid #ffffff;
     @media (hover: hover) {
       &:hover {
-        color: $color-pink-light;
+        color: $color-purple-light;
         background-color: #ffffff;
       }
     }
     &:active {
-      color: $color-pink-dark;
+      color: $color-purple-medium;
       background-color: #ffffff;
     }
   }

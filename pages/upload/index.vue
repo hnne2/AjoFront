@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 useHead({
   bodyAttrs: {
-    class: 'bg-blue',
+    class: 'bg-purple',
   },
 })
 
@@ -80,8 +80,10 @@ async function handleFile(file: File) {
     cookieId.value = chekId.value
 
     await nextTick()
-    checkStatus()
+		checkStatus()
   } catch {
+    isLoading.value = false
+    cookieId.value = null
     return (errorMessage.value = 'Что то пошло не так, попробуйте еще раз')
   }
 }
@@ -117,6 +119,15 @@ const toLottery = () => {
 const onRestart = () => {
   cookieId.value = null
   refresh()
+}
+
+if (data.value) {
+  if (data.value.seo && data.value.seo.meta) {
+    useSeoMeta(data.value.seo.meta)
+  }
+  if (data.value.schemaOrg) {
+    useSchemaOrg(data.value.schemaOrg)
+  }
 }
 </script>
 

@@ -1,15 +1,13 @@
-<script lang="ts" setup></script>
-
 <template>
   <nav class="nav">
     <div class="nav__item">
-      <NuxtLink class="nav__link" to="/">Как участвовать</NuxtLink>
+      <NuxtLink class="nav__link" to="/#steps">Как участвовать</NuxtLink>
     </div>
     <div class="nav__item">
-      <NuxtLink class="nav__link" to="/">Призы</NuxtLink>
+      <NuxtLink class="nav__link" to="/#prizes">Призы</NuxtLink>
     </div>
     <div class="nav__item">
-      <NuxtLink class="nav__link" to="/">Вопрос-ответ</NuxtLink>
+      <NuxtLink class="nav__link" to="/#faq">Вопрос-ответ</NuxtLink>
     </div>
   </nav>
 </template>
@@ -37,7 +35,7 @@
       height: 2px;
       left: 50%;
       position: absolute;
-      background: $color-blue-medium;
+      background: $color-black;
       transition:
         width 0.2s ease 0s,
         left 0.2s ease 0s;
@@ -45,7 +43,6 @@
     }
     @media (hover: hover) {
       &:hover {
-        color: $color-blue-medium;
         &::after {
           width: 100%;
           left: 0;

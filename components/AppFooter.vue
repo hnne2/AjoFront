@@ -1,4 +1,7 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useStoreLayout } from '~/stores/useStoreLayout'
+const { email } = useStoreLayout()
+</script>
 
 <template>
   <footer class="footer">
@@ -7,7 +10,7 @@
         <AppLogo class="footer__logo fill-white" />
         <div class="footer__contact">
           <p class="typo-p1">По вопросам акции:</p>
-          <a href="mailto:client@limkorm.ru">client@limkorm.ru</a>
+          <NuxtLink :to="`mailto:${email}`">{{ email }}</NuxtLink>
         </div>
       </div>
       <div class="footer__bottom typo-p2">

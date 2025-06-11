@@ -25,7 +25,7 @@ const handleMenuBody = (event: Event) => {
             <AppLogo />
           </NuxtLink>
           <AppNav />
-          <NuxtLink class="btn btn--s btn--pink-outline" to="/upload/">
+          <NuxtLink class="btn btn--s btn--black-outline" to="/upload/">
             Загрузить чек
           </NuxtLink>
         </div>
@@ -45,6 +45,7 @@ const handleMenuBody = (event: Event) => {
   @media (min-width: $tablet) {
     height: 80px;
   }
+
   .container {
     height: 100%;
     display: flex;
@@ -70,16 +71,16 @@ const handleMenuBody = (event: Event) => {
       padding-top: 64px;
       background-color: #fff;
     }
-    @media (min-width: $tablet) {
-      height: 100%;
-    }
     &.active {
       opacity: 1;
       visibility: visible;
-      z-index: 2;
+      z-index: 5;
       transition:
         opacity 0.3s ease,
         visibility 0.3s ease;
+    }
+    @media (min-width: $tablet) {
+      height: 100%;
     }
   }
   &__inner {
@@ -100,21 +101,21 @@ const handleMenuBody = (event: Event) => {
   &__logo-mobile {
     flex-shrink: 0;
     width: val(96, 128);
-    z-index: 3;
+    z-index: 6;
     @media (min-width: $tablet) {
       display: none;
     }
   }
   &__logo-desktop {
     display: none;
+    flex-shrink: 0;
+    width: val(96, 128);
     @media (min-width: $tablet) {
       display: block;
     }
-    flex-shrink: 0;
-    width: val(96, 128);
   }
   &__burger {
-    z-index: 3;
+    z-index: 6;
     display: flex;
     align-items: center;
     @media (min-width: $tablet) {

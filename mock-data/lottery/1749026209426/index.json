@@ -20,9 +20,19 @@
     "label": "Билет на VK fest",
     "description": "Вы получили главный приз – билет на vk fest!",
     "image": {
-      "url": "/images/lottery/vkfest.svg",
-      "alt": "alt"
+      "url": "/images/prizes/vkfest.svg",
+      "alt": "Билет на VK fest"
     },
     "isPrize": true
+  },
+  "stickers": {
+    "image": {
+      "url": "/images/lottery/stickers.png",
+      "alt": "Стикеры для Telegram"
+    },
+    "link": {
+      "label": "Забрать стикеры для телеграма",
+      "to": "/"
+    }
   }
 }

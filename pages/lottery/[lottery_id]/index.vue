@@ -6,7 +6,7 @@ import confetti from 'canvas-confetti'
 
 useHead({
   bodyAttrs: {
-    class: 'bg-pink',
+    class: 'bg-purple',
   },
 })
 
@@ -102,6 +102,15 @@ function handleCallback() {
     component: CallbackForm,
   })
 }
+
+if (data.value) {
+  if (data.value.seo && data.value.seo.meta) {
+    useSeoMeta(data.value.seo.meta)
+  }
+  if (data.value.schemaOrg) {
+    useSchemaOrg(data.value.schemaOrg)
+  }
+}
 </script>
 
 <template>
@@ -139,7 +148,7 @@ function handleCallback() {
           <div class="lottery__info-buttons">
             <button
               v-if="isWin || data.status === 'win'"
-              class="btn btn--m btn--pink"
+              class="btn btn--m btn--black"
               @click="handleCallback"
             >
               Связаться с организаторами
@@ -148,10 +157,17 @@ function handleCallback() {
               Загрузить еще чек
             </NuxtLink>
           </div>
-          <NuxtLink class="lottery__stickers" to="/" target="_blank">
-            <img src="/images/lottery/stickers.png" alt="stickers" />
+          <NuxtLink
+            class="lottery__stickers"
+            :to="data.stickers.link.to"
+            target="_blank"
+          >
+            <img
+              :src="data.stickers.image.url"
+              :alt="data.stickers.image.alt"
+            />
             <div class="lottery__stickers-wrap">
-              <p>Забрать стикеры для телеграма</p>
+              <p>{{ data.stickers.link.label }}</p>
               <NuxtIcon class="lottery__stickers-icon" name="icon-arrow" />
             </div>
           </NuxtLink>
