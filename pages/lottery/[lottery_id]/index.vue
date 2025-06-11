@@ -124,7 +124,8 @@ if (data.value) {
           :key="card.key"
           :prize="card.prize"
           :nocover="data.status !== 'ready'"
-          @result="handleResult"        />
+          @result="() => handleResult(card.prize != null)"
+        />
       </div>
       <transition name="fade-scale" mode="out-in" appear>
         <div
