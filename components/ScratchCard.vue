@@ -9,6 +9,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'result', result: boolean): void
 }>()
+const baseUrl = window.location.origin
 
 const actualPrize = computed<Prize>(() => {
   return (
@@ -16,7 +17,7 @@ const actualPrize = computed<Prize>(() => {
       id: -1,
       label: '<p>котик забрал приз <br> с этой карточки :(</p>',
       image: {
-        url: '/images/lottery/cat.svg',
+        url: 'cat.png',
         alt: 'alt',
       },
       isPrize: false,
@@ -242,7 +243,7 @@ onMounted(() => {
       <div v-show="contentVisible" class="scratch-card__content">
         <img
           ref="scratchCardContent"
-          :src="`http://localhost:8081/ajoApi/images/${actualPrize.image.url}`"
+          :src="`${baseUrl}/ajo/images/${actualPrize.image.url}`"
           :alt="actualPrize.image.alt"
         />
         <div class="scratch-card__content-text" v-html="actualPrize.label" />

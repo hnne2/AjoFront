@@ -63,7 +63,7 @@ export default function useFeedback() {
     try {
       const { agree, ...payload } = form
 
-      await $fetch(`${baseUrl}/ajo/feedback`, {
+      await $fetch(`${baseUrl}/ajo/feedback/`, {
         // baseURL: config.public.baseURL,
         method: 'POST',
         body: payload,

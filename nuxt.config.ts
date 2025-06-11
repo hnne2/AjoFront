@@ -1,10 +1,11 @@
 import checker from 'vite-plugin-checker'
 
 export default defineNuxtConfig({
+  ssr: false,
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
   devServer: {
-    port: 3000,
+    port: 3001,
     host: '0.0.0.0',
   },
 
