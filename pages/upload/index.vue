@@ -150,7 +150,7 @@ if (data.value) {
 <template>
   <div class="upload">
     <div class="container">
-      <h1 class="upload__title typo-h1">{{ data.seo.H1 }}</h1>
+      <h1 class="upload__title typo-h1">{{ data.seo.h1 }}</h1>
       <div
         class="upload__frame"
         :class="{
