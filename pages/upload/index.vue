@@ -10,10 +10,10 @@ const headers = useRequestHeaders(['cookie'])
 const cookieId = useCookie<string | null>('chek_id')
 const chekId = ref<string | null>(null)
 
-const { data, error, refresh } = await useFetch<any>(`${baseUrl}/ajo/upload`, {
-  headers,
-  query: cookieId.value ? { chek_id: cookieId.value } : {},
-})
+const { data, error, refresh } = await useFetch<any>(
+    () => `${baseUrl}/ajo/upload?chek_id=${cookieId.value ?? ''}`,
+    { headers }
+)
 
 if (error.value) {
   throw createError({
