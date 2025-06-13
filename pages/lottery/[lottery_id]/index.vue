@@ -11,6 +11,8 @@ useHead({
     class: 'bg-purple',
   },
 })
+const { closeAll } = useVfm()
+const { openSuccessModal, openFailureModal } = useFeedback()
 const baseUrl = window.location.origin
 const headers = useRequestHeaders(['cookie'])
 const { lottery_id } = useRoute().params
@@ -160,7 +162,7 @@ if (data.value) {
           </p>
           <div class="lottery__info-buttons">
             <button
-                v-if="isWin || data.status === 'win'"
+                v-if="!isFormSend && (isWin || data.status === 'win')"
                 class="btn btn--m btn--black"
                 @click="handleCallback"
             >
