@@ -36,26 +36,27 @@ if (data.value) {
         <div class="home-screen__wrap">
           <div class="home-screen__img">
             <img
-              class="home-screen__img-feed"
-              :src="data.homeScreen.image.url"
-              :alt="data.homeScreen.image.alt"
+                class="home-screen__img-feed"
+                :src="data.homeScreen.image.url"
+                :alt="data.homeScreen.image.alt"
             />
             <div class="home-screen__img-circle"></div>
           </div>
           <div class="home-screen__info">
             <h1 class="home-screen__title typo-h1">{{ data.seo.H1 }}</h1>
-            <p class="home-screen__description typo-p1">
-              {{ data.homeScreen.description }}
-            </p>
+            <div class="home-screen__description typo-p1">
+              <p>{{ data.homeScreen.description }}</p>
+              <p>{{ data.homeScreen.period }}</p>
+            </div>
             <div class="home-screen__buttons">
               <NuxtLink class="btn btn--m btn--black" to="/upload/"
-                >Загрузить чек</NuxtLink
+              >Загрузить чек</NuxtLink
               >
               <NuxtLink
-                class="btn btn--m btn--white-outline"
-                to="/rules/"
-                target="_blank"
-                >Правила акции</NuxtLink
+                  class="btn btn--m btn--white-outline"
+                  to="/rules/"
+                  target="_blank"
+              >Правила акции</NuxtLink
               >
             </div>
           </div>
@@ -68,9 +69,9 @@ if (data.value) {
         <div class="steps__list">
           <div class="steps__list-wrap">
             <StepsItem
-              v-for="step in data.steps.list"
-              :key="step.id"
-              :step="step"
+                v-for="step in data.steps.list"
+                :key="step.id"
+                :step="step"
             />
           </div>
           <div class="steps__arrows">
@@ -79,7 +80,7 @@ if (data.value) {
           </div>
         </div>
         <NuxtLink class="steps__btn btn btn--m btn--black" to="/upload/"
-          >Загрузить чек</NuxtLink
+        >Загрузить чек</NuxtLink
         >
         <div class="steps__arrow-to">
           <img src="/images/home/arrow-to.svg" alt="alt" />
@@ -88,8 +89,8 @@ if (data.value) {
         <div class="steps__stickers">
           <CardAnimate>
             <img
-              :src="data.prizes.stickers.image.url"
-              :alt="data.prizes.stickers.image.alt"
+                :src="data.prizes.stickers.image.url"
+                :alt="data.prizes.stickers.image.alt"
             />
             <div class="steps__stickers-info">
               <p class="typo-h6">
@@ -123,8 +124,8 @@ if (data.value) {
             <p class="typo-h3">главный приз</p>
             <CardAnimate>
               <img
-                :src="data.prizes.list[0].image.url"
-                :alt="data.prizes.list[0].image.alt"
+                  :src="data.prizes.list[0].image.url"
+                  :alt="data.prizes.list[0].image.alt"
               />
               <h3 class="typo-h4">{{ data.prizes.list[0].label }}</h3>
             </CardAnimate>
@@ -132,8 +133,8 @@ if (data.value) {
           <div class="prizes__list-right">
             <p class="typo-h4">А также:</p>
             <CardAnimate
-              v-for="(prize, index) in data.prizes.list.slice(1)"
-              :key="index"
+                v-for="(prize, index) in data.prizes.list.slice(1)"
+                :key="index"
             >
               <img :src="prize.image.url" :alt="prize.image.alt" />
               <h3 class="typo-h4">{{ prize.label }}</h3>
@@ -177,7 +178,7 @@ if (data.value) {
     background: url("data:image/svg+xml;utf8,\
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 150' preserveAspectRatio='none'>\
       <path d='M0,0 C480,150 960,150 1440,0 L1440,150 L0,150 Z' fill='white'/></svg>")
-      no-repeat;
+    no-repeat;
     background-size: 100% 100%;
     z-index: 2;
     @media (min-width: $tablet) {
@@ -215,9 +216,9 @@ if (data.value) {
     width: val(560, 700);
     height: val(560, 700);
     background: radial-gradient(
-      50% 50% at 50% 50%,
-      rgba(255, 255, 255, 0.39) 0%,
-      rgba(255, 255, 255, 0) 100%
+            50% 50% at 50% 50%,
+            rgba(255, 255, 255, 0.39) 0%,
+            rgba(255, 255, 255, 0) 100%
     );
   }
 
@@ -230,7 +231,13 @@ if (data.value) {
   }
 
   &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     margin-bottom: 32px;
+    @media (min-width: $tablet) {
+      gap: 24px;
+    }
   }
 
   &__buttons {
@@ -519,7 +526,7 @@ if (data.value) {
     background: url("data:image/svg+xml;utf8,\
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 150' preserveAspectRatio='none'>\
       <path d='M0,0 C480,200 960,200 1440,0 L1440,150 L0,150 Z' fill='white'/></svg>")
-      no-repeat;
+    no-repeat;
     background-size: 100% 100%;
     transform: rotate(180deg);
     z-index: 2;
@@ -718,11 +725,11 @@ if (data.value) {
     ul,
     ol {
       font-family:
-        'PTSans-Regular',
-        -apple-system,
-        BlinkMacSystemFont,
-        Arial,
-        sans-serif;
+          'PTSans-Regular',
+          -apple-system,
+          BlinkMacSystemFont,
+          Arial,
+          sans-serif;
       letter-spacing: normal;
       text-transform: none;
       font-weight: 400;

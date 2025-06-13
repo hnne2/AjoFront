@@ -3,6 +3,8 @@ import type { Prize } from '~/types/Prize'
 import useUIModal from '~/composables/useUIModal'
 import CallbackForm from '~/components/CallbackForm.vue'
 import confetti from 'canvas-confetti'
+import { useVfm } from 'vue-final-modal'
+
 
 useHead({
   bodyAttrs: {
@@ -34,6 +36,7 @@ const selectedPrize = ref<Prize | null>(null)
 const prizeCardIndex = ref(-1)
 const isWin = ref<boolean>(false)
 const isLoss = ref<boolean>(false)
+const isFormSend = ref<boolean>(false)
 const countOpenCard = ref<number>(0)
 
 if (cookieLotteryStatus.value === 'end') {
@@ -93,12 +96,21 @@ function handleCallback() {
   openModal({
     title: 'Связаться для <br> получения приза',
     description:
-        'Ваш выигрыш ' +
+        'Ваш выигрыш - ' +
         data.value.prize?.label +
         '! Оставьте свои контакты, чтобы менеджер мог передать вам выигрыш.',
     componentProps: {
       prize: data.value.prize?.label,
       lotteryId: lottery_id,
+      async onSubmitSuccess() {
+        cookieLotteryStatus.value = 'end'
+        await closeAll()
+        openSuccessModal()
+        isFormSend.value = true
+      },
+      onSubmitFailure(_error: any) {
+        openFailureModal()
+      },
     },
     component: CallbackForm,
   })

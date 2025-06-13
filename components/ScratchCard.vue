@@ -37,7 +37,6 @@ const scratchCardCanvasRender = ref<HTMLImageElement | null>(null)
 const scratchCardCoverContainer = ref<HTMLElement | null>(null)
 const scratchCardContent = ref<HTMLElement | null>(null)
 const canvas = ref<HTMLCanvasElement | null>(null)
-const contentVisible = ref<boolean>(false)
 
 // Контекст рисования
 let context: CanvasRenderingContext2D | null = null
@@ -194,10 +193,6 @@ onMounted(() => {
     canvas.value.classList.add('hidden')
   }
 
-  // Небольшой delay, чтобы точно избежать мигания картинки
-  requestAnimationFrame(() => {
-    contentVisible.value = true
-  })
 
   canvas.value.addEventListener('pointerdown', (e: PointerEvent) => {
     if (!scratchCardCover.value) return
@@ -240,7 +235,7 @@ onMounted(() => {
           alt=""
         />
       </div>
-      <div v-show="contentVisible" class="scratch-card__content">
+      <div class="scratch-card__content">
         <img
           ref="scratchCardContent"
           :src="`${baseUrl}/ajo/images/${actualPrize.image.url}`"
@@ -365,6 +360,7 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     filter: url('#remove-black');
+    background-color: $color-pink-dark;
     transition: opacity 0.4s;
 
     &.clear {
