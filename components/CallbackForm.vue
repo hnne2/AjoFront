@@ -48,12 +48,13 @@ function onTelInput(e: Event) {
     form.tel = input.value
   }
 }
+const baseUrl = window.location.origin
 
 const handleSubmit = async (_values: any, actions: any) => {
   isLoading.value = true
 
   try {
-    await $fetch('/api/feedback/', {
+    await $fetch(`${baseUrl}/ajo/feedback/`, {
       method: 'POST',
       body: { ...form },
     })
