@@ -10,10 +10,10 @@ const headers = useRequestHeaders(['cookie'])
 const cookieId = useCookie<string | null>('chek_id')
 const chekId = ref<string | null>(null)
 
-const { data, error, refresh } = await useFetch<any>(
-    () => `${baseUrl}/ajo/upload?chek_id=${cookieId.value ?? ''}`,
-    { headers }
-)
+const { data, error, refresh } = await useFetch<any>(`${baseUrl}/ajo/upload`, {
+  headers,
+  query: cookieId.value ? { chek_id: cookieId.value } : {},
+})
 
 if (error.value) {
   throw createError({
@@ -132,11 +132,15 @@ const toLottery = () => {
   navigateTo(`/lottery/${data.value.lottery_id}/`)
 }
 
-const onRestart = () => {
+const onRestart = async () => {
   cookieId.value = null
-  refresh()
+  try {
+    const result = await $fetch(`${baseUrl}/ajo/upload`)
+    data.value = result
+  } catch (err: any) {
+    errorMessage.value = 'Не удалось перезапросить данные'
+  }
 }
-
 if (data.value) {
   if (data.value.seo && data.value.seo.meta) {
     useSeoMeta(data.value.seo.meta)
