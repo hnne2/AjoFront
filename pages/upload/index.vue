@@ -10,7 +10,7 @@ const headers = useRequestHeaders(['cookie'])
 const cookieId = useCookie<string | null>('chek_id')
 const chekId = ref<string | null>(null)
 
-const { data, error, refresh } = await useFetch<any>(`${baseUrl}/ajo/upload`, {
+const { data, error } = await useFetch<any>(`${baseUrl}/ajo/upload`, {
   headers,
   query: cookieId.value ? { chek_id: cookieId.value } : {},
 })
@@ -137,7 +137,7 @@ const onRestart = async () => {
   try {
     const result = await $fetch(`${baseUrl}/ajo/upload`)
     data.value = result
-  } catch (err: any) {
+  } catch {
     errorMessage.value = 'Не удалось перезапросить данные'
   }
 }
