@@ -1,12 +1,6 @@
 <script lang="ts" setup>
 import { useStoreLayout } from '~/stores/useStoreLayout'
-import { storeToRefs } from 'pinia'
-
-const layout = useStoreLayout()
-const { email } = storeToRefs(layout)
-onMounted(() => {
-  layout.fetch()
-})
+const { email } = useStoreLayout()
 </script>
 
 <template>
