@@ -91,7 +91,7 @@ if (data.value) {
         <div class="steps__stickers">
           <CardAnimate>
             <img
-                :src="`${baseUrl}/ajo/images/${data.stickers.images.url}`"
+                :src="`${baseUrl}/ajo/images/${data.prizes.stickers.image.url}`"
                 :alt="data.prizes.stickers.image.alt"
             />
             <div class="steps__stickers-info">
