@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-const { data, error } = await useFetch<any>('/api/rules/')
+const baseUrl = window.location.origin
+
+const { data, error } = await useFetch<any>(`${baseUrl}/ajo/rules`)
 
 if (error.value) {
   throw createError({
