@@ -16,9 +16,7 @@ export const useStoreLayout = defineStore('layout', {
   actions: {
     async fetch() {
       try {
-        const baseUrl = window.location.origin
-
-        const response = await $fetch<any>(`${baseUrl}/ajo/layout`, {
+        const response = await $fetch<any>(`/api/layout/`, {
           headers: useRequestHeaders(['cookie']),
         })
 
@@ -29,6 +27,6 @@ export const useStoreLayout = defineStore('layout', {
           statusMessage: 'Ошибка сервера',
         })
       }
-    }
+    },
   },
 })
