@@ -8,7 +8,6 @@ defineProps<{
   <div class="info-page">
     <div class="container">
       <div class="info-page__wrap">
-        <h1 class="info-page__title typo-h3">{{ data.seo.H1 }}</h1>
         <div class="info-page__content user-content" v-html="data.content" />
         <div class="info-page__footer">
           <h3 class="typo-h6">Важно знать!</h3>
